@@ -8,13 +8,14 @@ public class SocketClient
 		try
 		{
 			Socket clientSocket = new Socket("10.5.38.127", 5000);
-			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+			out = new PrintWriter(clientSocket.getOutputStream(), true);
+			in = new BufferedReader(new InputStreamReader(System.in));
 			
+			out.println("HELO");
 			
-			while((userInput = stdIn.readLine()) != null){
+			while((userInput = in.readLine()) != null){
 				
-				out.println("HELO");
+				System.out.prinln(userInput);
 			
 			}
 		}
