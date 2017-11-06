@@ -10,7 +10,13 @@ public class SocketClient
 			Socket clientSocket = new Socket("10.5.38.127", 5000);
 			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
 			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("HELO");
+			
+			
+			while((userInput = stdIn.readLine()) != null){
+				
+				out.println("HELO");
+			
+			}
 		}
 		        catch(IOException e)
         {
