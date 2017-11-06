@@ -8,15 +8,9 @@ public class SocketClient
 		try
 		{	
 			Socket clientSocket = new Socket("10.5.40.36", 5000);
-			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-			InputStreamReader input = new InputStreamReader(clientSocket.getInputStream());			
-			BufferedReader in = new BufferedReader(input);
-			
-			out.println("HELO");
-			String userInput;	
-			userInput = in.readLine();	
-			
-			System.out.println(userInput);
+			SendRequests.SendMessages(clientSocket, "Helo");	
+			String input = ReceiveRequests.ReceiveMessages();
+			System.out.println(input);
 		}
 		        
 		catch(IOException e)
@@ -28,5 +22,25 @@ public class SocketClient
 	
 	}
 
+}
+
+public class SendRequests
+{
+	public void SendMessages(Socket clientSocket, String action){
+		PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+		out.print(action);
+	}
+}
+
+public class ReceiveRequests
+{
+	public String ReceiveMessages(){
+		InputStreamReader input = new InputStreamReader(clientSocket.getInputStream());			
+		BufferedReader in = new BufferedReader(input);
+		
+		String userInput;	
+		userInput = in.readLine();
+		return userInput;
+	}
 }
 
