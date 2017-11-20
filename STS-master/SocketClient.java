@@ -1,28 +1,27 @@
 import java.io.*;
-import java.net.Socket;
+import java.net.*;
 
 public class SocketClient
 {
 	public static void main(String args[])
 	{
 		try
-		{
-			Socket clientSocket = new Socket("10.5.38.127", 5000);
-			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-			
-			
-			while((userInput = stdIn.readLine()) != null){
-				
-				out.println("HELO");
-			
-			}
+		{	
+			Socket clientSocket = new Socket("10.5.40.36", 5000); 
+			SendRequests sendReq = new SendRequests();
+			ReceiveRequests recReq = new ReceiveRequests();
+			sendReq.SendMessages(clientSocket, "Helo");	
+			String input = recReq.ReceiveMessages();
+			System.out.println(input);
 		}
-		        catch(IOException e)
-        {
-            System.out.println("Error in setting up socket " + e);
-            System.exit(1);
-        }
+		        
+		catch(IOException e)
+        	{
+		 	System.out.println("Error in setting up socket " + e);
+			System.exit(1);
+        
+		}
+	
 	}
-}
 
+}
