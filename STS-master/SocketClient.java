@@ -7,12 +7,13 @@ public class SocketClient
 	{
 		try
 		{	
-			Socket clientSocket = new Socket("10.5.40.36", 5000); 
+			Socket clientSocket = new Socket("10.5.41.41", 5000);  
 			SendRequests sendReq = new SendRequests();
 			ReceiveRequests recReq = new ReceiveRequests();
-			sendReq.SendMessages(clientSocket, "Helo");	
-			String input = recReq.ReceiveMessages();
-			System.out.println(input);
+			sendReq.SendMessages(clientSocket, "HELO");	
+			recReq.ReceiveMessages(clientSocket);
+			//System.out.println(input);
+
 		}
 		        
 		catch(IOException e)
@@ -21,7 +22,7 @@ public class SocketClient
 			System.exit(1);
         
 		}
-	
+	//connects to server but doesnt retreive info or send command.
 	}
 
 }

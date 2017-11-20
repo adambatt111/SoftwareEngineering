@@ -4,17 +4,22 @@ import java.net.*;
 
 public class ReceiveRequests
 {
-	public String ReceiveMessages(){
+	public void ReceiveMessages(Socket clientSocket){
+		boolean Onward = true;
         try{
-        Socket clientSocket = new Socket("10.5.40.36", 5000);
+			
 		InputStreamReader input = new InputStreamReader(clientSocket.getInputStream());			
 		BufferedReader in = new BufferedReader(input);
 		
-		String userInput;	
+		String userInput;
+		while(Onward == true){		
 		userInput = in.readLine();
-		return userInput;
-        }catch(Exception e){}
+		System.out.println(userInput);
+		}
+		
+        }catch(Exception e){
+			
+		}
      
-     return "null";
 	}
 }
