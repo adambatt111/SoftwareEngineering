@@ -2,19 +2,48 @@
 import java.io.*;
 import java.net.*;
 
-public class ReceiveRequests
+public class ReceiveRequests implements Runnable
 {
-	public String ReceiveMessages(){
-        try{
-        Socket clientSocket = new Socket("10.5.40.36", 5000);
-		InputStreamReader input = new InputStreamReader(clientSocket.getInputStream());			
-		BufferedReader in = new BufferedReader(input);
-		
-		String userInput;	
-		userInput = in.readLine();
-		return userInput;
-        }catch(Exception e){}
-     
-     return "null";
+	InputStreamReader input;
+	Socket clientSocketRec;
+	BufferedReader in;
+	
+	private Thread t;
+	private String threadName;
+	
+	boolean RecLoop;
+	String serverInput;
+	
+	ReceiveRequests(Socket clientSocket, String name){
+		try{
+			RecLoop = true;
+			threadName = name;
+			clientSocketRec = clientSocket;
+			input = new InputStreamReader(clientSocketRec.getInputStream());
+			in = new BufferedReader(input);
+			
+			
+		}catch(Exception e){
+			
+		}
 	}
+	
+	public void run(){
+        try{
+			while(RecLoop){	
+				serverInput = in.readLine();
+				System.out.println(serverInput);
+			}
+        }catch(Exception e){
+			
+		}
+     
+	}
+	
+	public void start () {
+      if (t == null) {
+         t = new Thread (this, threadName);
+         t.start ();
+      }
+   }
 }
