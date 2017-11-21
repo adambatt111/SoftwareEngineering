@@ -1,13 +1,51 @@
+
 import java.io.*;
 import java.net.*;
 
-public class SendRequests
+public class SendRequests implements Runnable
 {
-	public void SendMessages(Socket clientSocket, String action){
+	PrintWriter out;
+	Socket socketClientSend;
+	
+	private Thread s;
+	private String threadName;
+	
+	boolean RecLoop;
+	public String action = "HELO";
+	
+	SendRequests(Socket socketClient, String name){
 		try{
-           // Socket clientSocket = new Socket("10.5.40.36", 5000);
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-		    out.print(action);
-        }catch(Exception e){}
+		threadName = name;
+		socketClientSend = socketClient;
+		RecLoop = true;
+		out = new PrintWriter(socketClientSend.getOutputStream(), true);
+		}catch(Exception e){
+			
+		}
 	}
+
+	public void run(){
+        try{
+			while(RecLoop){	
+				if(action != ""){
+					out.println(action);
+					action = "";
+				}
+			}
+        }catch(Exception e){
+			
+		}
+     
+	}
+	
+	public void start () {
+		if (s == null) {
+			s = new Thread (this, threadName);
+			s.start ();
+		}
+   }
+   
+   public void SetCommand(String command){
+	   action = command;
+   }
 }
