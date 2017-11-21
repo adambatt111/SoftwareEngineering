@@ -4,19 +4,19 @@ import java.net.*;
 public class SocketClient
 {
 
-	public static void main(String args[])
+	public void SocketStartUp(String IP)
 	{
 		try
 		{	
-			Socket clientSocket = new Socket("10.5.41.31", 5000);  
+			Socket clientSocket = new Socket(IP, 5000);  
 			SendRequests sendReq = new SendRequests(clientSocket, "Sending");
 			ReceiveRequests recReq = new ReceiveRequests(clientSocket, "Receive");
 			sendReq.start();
 			recReq.start();
-			
+			/*
 			sendReq.SetCommand("HELO");
 			System.out.println("waitttttttttttt");
-			sendReq.SetCommand("REGI");
+			sendReq.SetCommand("REGI");*/
 			
 		}
 		        
