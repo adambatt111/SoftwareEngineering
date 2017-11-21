@@ -8,19 +8,12 @@ public class GUIInterface {
 		System.out.println("Connecting to the system now");
 		Socket clientSocket;
 		try{
-		clientSocket = new Socket("10.5.41.31", 5000);
+		//clientSocket = new Socket("10.5.41.31", 5000);
 		
 		
-		PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-		InputStreamReader inputGot = new InputStreamReader(clientSocket.getInputStream());			
-		BufferedReader in = new BufferedReader(inputGot);
-		
-		out.println("REGI");
-		String userInput;	
-		userInput = in.readLine();	
-			
-		System.out.println("UserID " + userInput);
-		
+		SocketClient sc = new SocketClient();
+		sc.SocketStartUp("10.5.38.122");
+		sc.GetAction("REGI");
 		}
 		catch(Exception ex){
 			System.out.println("Could not connect to the server. Make sure server is online");
