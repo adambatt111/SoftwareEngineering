@@ -2,12 +2,19 @@ import java.io.*;
 import java.net.*;
 public class GUIInterface {
 
+	public static SocketClient sc;
 	public static void main(String args[]){
 		
 		System.out.println("Welcome to the Stock take system");
 		System.out.println("Connecting to the system now");
+		Socket clientSocket;
 		try{
-			ServerConnect();
+		//clientSocket = new Socket("10.5.41.31", 5000);
+		
+	
+		sc = new SocketClient();
+		sc.SocketStartUp("10.5.38.138");
+		sc.GetAction("REGI");
 		}
 		catch(Exception ex){
 			System.out.println("Could not connect to the server. Make sure server is online");
@@ -16,7 +23,9 @@ public class GUIInterface {
 			System.exit(0);
 		}
 		
-	
+		
+		//insert get id here 
+		//display id here
 		
 		boolean programOn = true;
 		while (programOn == true){
@@ -27,6 +36,7 @@ public class GUIInterface {
 				switch(input){
 					case "1":
 					System.out.println("Buying Stocks");
+					BuyStocks();
 					programOn = false;
 					break;
 					case "2":
@@ -68,15 +78,25 @@ public class GUIInterface {
 					break;					
 				}
 			}catch(Exception e){
-				System.out.println("Error" + e);
+				
 			}
 		}
 		
 	}
 	
-	private static void ServerConnect()
-	{
-			SocketClient sc = new SocketClient("10.5.38.139");
+	public static void BuyStocks(){
+		try {	
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("\nPlease Enter the Company you wish to buy Stocks in: \n");
+			String inputcomp = br.readLine();
+			System.out.println("\nPlease Enter the Number of stocks you wish to buy: \n");
+			int inputstock = Integer.parseInt(br.readLine());
+			String passIn = "BUY:" + inputcomp + inputstock;
+			sc.GetAction(passIn);
+		}
+		catch(Exception e){
+			
+		}
 	}
 	
 }

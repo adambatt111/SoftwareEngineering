@@ -6,7 +6,9 @@ public class SocketClient
 	Socket clientSocket;
 	SendRequests sendReq;
 	
-	public SocketClient(String IP){
+	public void SocketStartUp(String IP)
+	{
+		
 		try
 		{	
 			clientSocket = new Socket(IP, 5000);  
@@ -14,7 +16,11 @@ public class SocketClient
 			ReceiveRequests recReq = new ReceiveRequests(clientSocket, "Receive");
 			sendReq.start();
 			recReq.start();
-			sendReq.SetCommand("REGI");
+			/*
+			sendReq.SetCommand("HELO");
+			System.out.println("waitttttttttttt");
+			sendReq.SetCommand("REGI");*/
+			
 		}
 		        
 		catch(IOException e)
@@ -23,6 +29,7 @@ public class SocketClient
 			System.exit(1);
         
 		}
+	//connects to server but doesnt retreive info or send command.
 	}
 
 	public void GetAction(String action){
