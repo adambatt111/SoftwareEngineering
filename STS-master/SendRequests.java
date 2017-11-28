@@ -11,7 +11,6 @@ public class SendRequests implements Runnable
 	private String threadName;
 	
 	boolean RecLoop;
-	public String action = "HELO";
 	
 	SendRequests(Socket socketClient, String name){
 		try{

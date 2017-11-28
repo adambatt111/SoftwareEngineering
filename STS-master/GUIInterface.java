@@ -6,14 +6,8 @@ public class GUIInterface {
 		
 		System.out.println("Welcome to the Stock take system");
 		System.out.println("Connecting to the system now");
-		Socket clientSocket;
 		try{
-		//clientSocket = new Socket("10.5.41.31", 5000);
-		
-		
-		SocketClient sc = new SocketClient();
-		sc.SocketStartUp("10.5.38.122");
-		sc.GetAction("REGI");
+			ServerConnect();
 		}
 		catch(Exception ex){
 			System.out.println("Could not connect to the server. Make sure server is online");
@@ -22,9 +16,7 @@ public class GUIInterface {
 			System.exit(0);
 		}
 		
-		
-		//insert get id here 
-		//display id here
+	
 		
 		boolean programOn = true;
 		while (programOn == true){
@@ -76,10 +68,15 @@ public class GUIInterface {
 					break;					
 				}
 			}catch(Exception e){
-				
+				System.out.println("Error" + e);
 			}
 		}
 		
+	}
+	
+	private static void ServerConnect()
+	{
+			SocketClient sc = new SocketClient("10.5.38.139");
 	}
 	
 }
