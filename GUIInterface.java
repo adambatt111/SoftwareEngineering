@@ -27,7 +27,7 @@ public class GUIInterface {
 				switch(input){
 					case "1":
 					System.out.println("Buying Stocks");
-					buyShares();
+					sc.buyShares();
 					//programOn = false;
 					break;
 					case "2":
@@ -65,7 +65,7 @@ public class GUIInterface {
 					break;
 					case "10":
 					System.out.println("HELO being used");
-					callHello();
+					sc.callHello();
 					//programOn = false;
 					break;
 					default:
@@ -82,14 +82,8 @@ public class GUIInterface {
 	
 	private static void ServerConnect()
 	{
-			sc = new SocketClient("10.5.38.18");
+			sc = new SocketClient("10.5.41.31");
 	}
 	
-	public static void callHello(){
-		sc.GetAction("HELO");
-	}
-	
-	public static void buyShares(){
-		sc.GetAction("BUY:AVIVA:2:60406");
-	}
+
 }
