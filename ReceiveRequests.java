@@ -49,9 +49,6 @@ public class ReceiveRequests implements Runnable
    }
    
    public String GetID(){
-	   //String[] IDString = serverInput.split(":");
-	   //ID = IDString[2];
-	   
 	   return serverInput;
    }
 }
